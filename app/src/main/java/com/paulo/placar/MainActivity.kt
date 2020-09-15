@@ -1,8 +1,11 @@
 package com.paulo.placar
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         }
         btn_reset.setOnClickListener {
             reset()
+        }
+        btn_finalizar.setOnClickListener(){
+            finalizar()
         }
 
 
@@ -77,6 +83,14 @@ class MainActivity : AppCompatActivity() {
         var pont:String = "0"
         txt_aplacar.text = pont
         txt_bplacar.text = pont
+    }
+    fun finalizar(){
+        var time1 = txt_aplacar.text.toString().toInt()
+        var time2 = txt_bplacar.text.toString().toInt()
+        val intent = Intent(this@MainActivity, Activity2::class.java)
+        intent.putExtra("Time1", time1)
+        intent.putExtra("Time2", time2)
+        startActivity(intent)
     }
 
 }
